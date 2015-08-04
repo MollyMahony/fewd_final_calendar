@@ -1,0 +1,108 @@
+<?php
+session_start();
+$role= $_GET['role'];
+$id = $_GET['id'];
+?>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="mystyle.css">
+        <!-- JavaScript for date-picker.php (calendar) -->
+        <script type="text/javascript">
+            function SelectDate()
+            {
+                D = document.getElementById('Date').value;
+                if(D){
+                    D = D.split('/');
+                }else{
+                    Dat = new Date();
+                    D = new Array(Dat.getDay(), Dat.getMonth(), Dat.getFullYear());
+                }
+                win = window.open("date-picker.php","win","status=no,scrollbars=no,toolbar=no,menubar=no,height=150,width=150");
+                if (parseInt(navigator.appVersion) == 2 && navigator.appName == "Netscape")
+                    win = window.open("date-picker.html","win","status=yes,height=325,width=250");
+                //win'MakeDate',D[2], D[1],D[0], 'SetDate');
+                win.MakeDate(D[2], D[1], D[0]);
+            }
+            
+            function SetDate(Day, Month, Year)
+            {
+                document.getElementById('Date').value = Day + '/' + Month + '/' + Year;
+            }
+
+
+</script>
+</head>
+<body>
+      <div id="nav">
+          <ul>
+            <li><a href="index.php">
+                <img border="0" src="logo.jpg" alt="V-Campus" width="100" height="17" />
+            </a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="course_logout.html">Course</a></li>
+        </ul>
+      </div><!-- /nav -->
+
+      <img src="Maintain.jpg" alt="login" width="100%" height="90">
+
+      <div id="content">
+          <div id="sidebar">
+              <!-- side bar content -->
+          </div> <!-- end of side bar -->
+
+          <div id="main">
+              <!-- content -->
+              <form method="post" action="do_add_course.php">
+                  <fieldset>
+                      <legend>Course Info</legend>
+                      <table>
+                          <tr>
+                              <td><label for="courseName">Course Name</label></td>
+                              <td><select name="courseName">
+                                      <option value="select" selected="selected">Select Course</option>
+                                      <option VALUE="1">Creative Writing
+                                      <option VALUE="2">Expository Writing
+                                      <option VALUE="3">Elementary Creative Writing
+                                      <option VALUE="4">Mathematical Logic & Problem Solving
+                                      <option VALUE="5">Introduction to Mathematical Logic & Problem Solving
+                                      <option VALUE="6">Topics in Physics
+                                      <option VALUE="7">Physics: Quantum Mechanics
+                                      <option VALUE="8">Physics: General and Special Relativity
+
+                                  </select></td>
+                          </tr>
+                          <tr>
+
+                              <td><label for="course_start">Course Start Date</label></td>
+                              <td>
+                                  <input type="text" name="Date" id="Date"><input type="button" onClick="SelectDate('Date1')" value="Select"><br>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td><label for="course_end">Course End Date</label></td>
+                              <td>
+                                  <input type="text" name="endDate"><input type="button" onClick="SelectDate('Date1')" value="Select"><br>
+                              </td>
+                          </tr>
+                          <tr>
+
+                              <td><label for="course_due">Apply Course Dateline</label></td>
+                              <td>
+                                  <input type="text" name="dueDate"><input type="button" onClick="SelectDate('Date1')" value="Select"><br>
+                              </td>
+                          </tr>
+                      </table>
+                  </fieldset>
+                  <input type="submit" value="Login" name="submit"/>
+              </form>
+              <div id="cal1Container"></div>
+
+          </div><!-- end main div -->
+      </div><!-- end content div -->
+
+
+</body>
+</html>
+
+- See more at: http://www.htmlcodetutorial.com/comments/viewtopic.php?f=2&t=20687#sthash.9SeTvURS.dpuf
